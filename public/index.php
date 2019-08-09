@@ -1,24 +1,23 @@
 <?php
 require '../basic/basic.php';
 inc([
-    'call',
+    'controller',
+    'e',
     'env',
     'error',
-    'is_dev',
+    'redirect',
     'segment',
     'view'
 ]);
-if(is_dev(){
-    error(true);
-}
+error(true);
 $call=segment(1);
 if($call=='/' OR empty($call)){
-    $call=$_ENV['SITE_CALL'].'/home';
+    $call=$_ENV['SITE_CALL'];
 }
 $filename=ROOT.'call/call.json';
 $repos=json_decode(file_get_contents($filename));
 if(in_array($call,$repos)){
-    call($call);
+    controller($call.'/home');
 }else{
     view($_ENV['SITE_CALL'].'/404');
 }
