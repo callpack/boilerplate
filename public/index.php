@@ -16,7 +16,8 @@ if($call=='/' OR empty($call)){
 }
 $filename=ROOT.'call/call.json';
 $repos=json_decode(file_get_contents($filename));
-if(in_array($call,$repos)){
+$alternativeCall=ROOT.$call.'/controller/home.php';
+if(in_array($call,$repos) OR file_exists($alternativeCall)){
     controller($call.'/home');
 }else{
     view($_ENV['SITE_CALL'].'/404');
