@@ -1,8 +1,6 @@
 <?php
-//Criado por Anderson Ismael
-//22 de janeiro de 2019
-function error($show=true){
-    if($show){
+function error($exibirBool=true){
+    if($exibirBool){
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
