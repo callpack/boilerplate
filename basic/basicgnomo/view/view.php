@@ -2,7 +2,11 @@
 function view($nomeStr,$data=null,$print=true){
   $arr=explode('/',$nomeStr);
   $nomeDoRepositorioStr=@$arr[0];
-  $nomeDoPacoteStr=@$arr[1];
+  unset($arr[0]);
+  $nomeDoPacoteStr=implode('/',$arr);
+  if($nomeDoPacoteStr=='404'){
+    header("HTTP/1.0 404 Not Found");
+  }
   $str=ROOT.'call/callgnomo/'.$nomeDoRepositorioStr;
   $str.='/view/'.$nomeDoPacoteStr.'.php';
   if(file_exists($str)){
